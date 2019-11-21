@@ -2,14 +2,11 @@
   "name": "reactjs-direct",
   "version": "0.0.1",
   "description": "Design System for Home Credit Indonesia",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "peerDependencies": {
-    "react": "^16.4.0"
   },
   "repository": {
     "type": "git",
@@ -18,23 +15,30 @@
   "keywords": [
     "ReactJS"
   ],
-  "author": "Untung So Andryanto",
+  "author": "HCID Frontend",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fe-homecredit-id/reactjs-direct/issues"
   },
   "homepage": "https://github.com/fe-homecredit-id/reactjs-direct#readme",
   "dependencies": {
-    "react": "^16.9.0",
-    "webpack": "^4.39.2"
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.15",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.4.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@emotion/core": "^10.0.22",
     "babel-loader": "^8.0.6",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "react": "^16.9.0",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.6"
   },
   "files": [
