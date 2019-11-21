@@ -1,3 +1,2 @@
-import { ButtonHC } from "./Components/Button";
-
-export { ButtonHC };
+export * from "./Components/Button";
+export * from "./Components/Text";
