@@ -5,81 +5,65 @@ import { colors } from "../assets/mixins/mixins";
 
 const ButtonStyle = styled.button`
   background-color: ${props =>
-    props.variant === "filled"
-      ? colors.mainRed
-      : props.variant === "nude"
+    props.variant === "primary"
+      ? colors.primaryRed
+      : props.variant === "secondary"
       ? colors.mainWhite
-      : colors.mainRed};
-
-  background: ${props => (props.disabled ? colors.disabledGrey : "")};
-  padding: ${props =>
-    props.size === "tiny"
-      ? "5px 8px"
-      : props.size === "sm"
-      ? "10px 20px"
-      : props.size === "md"
-      ? "15px 30px"
-      : props.size === "lg"
-      ? "20px 40px"
-      : "10px 20px"};
-  font-size: ${props =>
-    props.size === "tiny"
-      ? "10px"
-      : props.size === "sm"
-      ? "12px"
-      : props.size === "md"
-      ? "14px"
-      : props.size === "lg"
-      ? "16px"
-      : "12px"};
+      : props.variant === "text"
+      ? "transparent"
+      : props.isDisabled
+      ? colors.secondaryBlack
+      : colors.primaryRed};
+  padding: 10px 20px;
+  outline: none;
   margin: 5px;
   color: ${props =>
-    props.variant === "filled"
+    props.variant === "primary"
       ? colors.mainWhite
-      : props.variant === "nude"
-      ? colors.mainRed
+      : props.variant === "secondary"
+      ? colors.primaryRed
+      : props.variant === "text"
+      ? colors.primaryRed
       : colors.mainWhite};
   display: inline-flex;
-  box-shadow: ${props =>
-    props.variant === "nude"
-      ? "10px 10px 19px -8px rgba(155,155,155,0.75)"
-      : "none"};
-  border-radius: ${props => (props.type === "rounded" ? "20px" : "8px")};
+  border-radius: 8px;
   border: none;
   &:hover,
   &:active,
   &:focus {
     background: ${props =>
-      props.variant === "nude"
+      props.variant === "secondary"
         ? colors.mainWhite
-        : props.disabled
-        ? colors.disabledGrey
-        : colors.clickedRed};
-    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+        : props.isDisabled
+        ? colors.secondaryBlack
+        : props.variant === "text"
+        ? "unset"
+        : colors.primaryRed};
+    cursor: ${props => (props.isDisabled ? "not-allowed" : "pointer")};
     outline: 0;
   }
 `;
 
-export const Button = ({ variant, type, size, disabled, ...props }) => {
+const Button = ({ variant, isDisabled, ...props }) => {
   return (
-    <ButtonStyle
-      variant={variant}
-      type={type}
-      size={size}
-      disabled={disabled}
-      {...props}
-    />
+    <React.Fragment>
+      <ButtonStyle
+        variant={variant}
+        isDisabled={isDisabled}
+        style={props.styleConfig}
+        onClick={props.onClick}
+        {...props}
+      />
+    </React.Fragment>
   );
 };
 
+export { Button };
+
 Button.propTypes = {
-  variant: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired
+  variant: PropTypes.string.isRequired
 };
 
 Button.defaultProps = {
-  variant: "filled",
-  type: "default",
-  size: "md"
+  variant: "primary"
 };
