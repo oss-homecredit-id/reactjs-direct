@@ -1,6 +1,6 @@
 {
   "name": "reactjs-direct",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Design System for Home Credit Indonesia",
   "main": "./build/index.js",
   "scripts": {
@@ -39,7 +39,6 @@
     "@babel/preset-react": "^7.7.0",
     "@emotion/core": "^10.0.22",
     "babel-loader": "^8.0.6",
-    "react": "^16.9.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.6"
   }
