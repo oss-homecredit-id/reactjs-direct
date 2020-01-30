@@ -2,7 +2,7 @@ import React from "react";
 import { css, jsx } from "@emotion/core";
 import { colors } from "../assets/mixins/mixins";
 
-const Checkbox = ({ name, options, disabled, checked, setChecked }) => {
+export const Checkbox = ({ name, options, disabled, checked, setChecked }) => {
   const handleChange = e => {
     if (options.length > 1) {
       const a = document.querySelectorAll(`[name=${name}]:checked`);
@@ -107,5 +107,3 @@ const Checkbox = ({ name, options, disabled, checked, setChecked }) => {
     </div>
   );
 };
-
-export { Checkbox };

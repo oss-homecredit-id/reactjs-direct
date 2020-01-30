@@ -58,7 +58,7 @@ const Button = ({ variant, isDisabled, ...props }) => {
   );
 };
 
-export { Button };
+export default Button;
 
 Button.propTypes = {
   variant: PropTypes.string.isRequired
