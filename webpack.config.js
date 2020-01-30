@@ -1,20 +1,21 @@
-var path = require("path");
+const path = require("path");
 
-module.exports = {
+module.exports = (env, argv) => ({
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "index.js",
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
+    publicPath: "/build/"
   },
+  devtool: argv.mode !== "production" ? "inline-source-map" : false,
   module: {
     rules: [
       {
         test: /\.js$/,
+        include: path.resolve(__dirname, "src"),
         exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: ["babel-loader"]
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -27,7 +28,15 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
+  },
+  externals: {
+    react: "react",
+    "react-dom": "react-dom"
   }
-};
+});
