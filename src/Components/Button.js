@@ -44,7 +44,7 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ variant, isDisabled, ...props }) => {
+export const Button = ({ variant, isDisabled, ...props }) => {
   return (
     <React.Fragment>
       <ButtonStyle
@@ -57,8 +57,6 @@ const Button = ({ variant, isDisabled, ...props }) => {
     </React.Fragment>
   );
 };
-
-export default Button;
 
 Button.propTypes = {
   variant: PropTypes.string.isRequired
