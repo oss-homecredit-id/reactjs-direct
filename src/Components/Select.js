@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { colors } from "../assets/mixins/mixins";
 import { Input } from "./Input";
 import { css } from "@emotion/core";
 
 export const Select = props => {
-  const { option, value, label, selected } = props;
+  const { option, value, label, formLabel, selected } = props;
 
   const [selectedValue, setSelectedValue] = useState("Default Value");
   const [selectOpen, setSelectOpen] = useState(false);
   const [options, setOptions] = useState(option || []);
+
+  useEffect(() => {
+    setOptions(option);
+  }, [props.option]);
 
   const openSelect = () => {
     setSelectOpen(!selectOpen);
@@ -32,12 +36,24 @@ export const Select = props => {
     setSelectOpen(false);
   };
 
+  const labelSelect = data => {
+    const splitLabel = label.replace(/\s/g, "").split(",");
+    if (Array.isArray(splitLabel) && splitLabel.length > 1) {
+      let newLabel = "";
+      for (let i = 0; i < splitLabel.length; i++) {
+        newLabel += data[splitLabel[i]] + (i === 0 ? " - " : "");
+      }
+      return newLabel;
+    }
+    return data[splitLabel];
+  };
+
   return (
     <React.Fragment>
       <Input
         type="select"
-        name="category"
-        label="Category"
+        name={formLabel}
+        label={formLabel}
         value={selectedValue}
         selectOpen={selectOpen}
         onClick={openSelect}
@@ -77,7 +93,7 @@ export const Select = props => {
               onKeyDown={() => {}}
               tabIndex={0}
             >
-              {dataOption[label]}
+              {labelSelect(dataOption)}
             </div>
           ))}
         </div>
