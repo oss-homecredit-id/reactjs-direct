@@ -21,6 +21,7 @@ export const Input = forwardRef((props, ref) => {
     selectOpen,
     isDisabled,
     readOnly,
+    maxlength,
     required
   } = props;
 
@@ -56,9 +57,7 @@ export const Input = forwardRef((props, ref) => {
               ? "1px solid" + colors.secondaryBlack
               : "1px solid  #7b7b7b"
           };
-          border-color: ${
-            isError ? colors.primaryRed : helper ? colors.primaryOrange : "none"
-          };
+          border-color: ${isError ? colors.primaryRed : "none"};
           background-color: ${colors.background};
           border-top-right-radius: 4px;
           border-top-left-radius: 4px;
@@ -98,6 +97,7 @@ export const Input = forwardRef((props, ref) => {
         required={required}
         ref={ref}
         readOnly={readOnly ? true : false}
+        maxlength={maxlength}
       />
       {type !== "text" && (
         <span
