@@ -36,7 +36,7 @@ export const Input = forwardRef((props, ref) => {
       {/* change conditional style with emotion */}
       <label
         css={css`
-          font-size: 12px;
+          font-size: 0.75rem;
           color: ${isDisabled ? colors.secondaryBlack : ""};
         `}
       >
@@ -48,7 +48,7 @@ export const Input = forwardRef((props, ref) => {
           width: 100%;
           height: 40px;
           padding: 2px 8px;
-          font-size: 16px;
+          font-size: 0.8rem;
           border: none;
           outline: none;
           color: ${isDisabled ? colors.secondaryBlack : colors.darkerBlack};
@@ -61,12 +61,12 @@ export const Input = forwardRef((props, ref) => {
           background-color: ${colors.background};
           border-top-right-radius: 4px;
           border-top-left-radius: 4px;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
           &:focus {
             border-bottom: ${
               isDisabled
                 ? ""
-                : helper
-                ? "2px solid" + colors.primaryOrange
                 : isError
                 ? "2px solid" + colors.primaryRed
                 : "2px solid" + colors.darkerBlack
@@ -97,7 +97,7 @@ export const Input = forwardRef((props, ref) => {
         required={required}
         ref={ref}
         readOnly={readOnly ? true : false}
-        maxlength={maxlength}
+        maxLength={maxlength}
       />
       {type !== "text" && (
         <span
