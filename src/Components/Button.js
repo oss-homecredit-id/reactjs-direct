@@ -5,14 +5,14 @@ import { colors } from "../assets/mixins/mixins";
 
 const ButtonStyle = styled.button`
   background-color: ${props =>
-    props.variant === "primary"
+    props.isDisabled
+      ? colors.secondaryBlack
+      : props.variant === "primary"
       ? colors.primaryRed
       : props.variant === "secondary"
       ? colors.mainWhite
       : props.variant === "text"
       ? "transparent"
-      : props.isDisabled
-      ? colors.secondaryBlack
       : colors.primaryRed};
   padding: 10px 20px;
   outline: none;
@@ -27,15 +27,23 @@ const ButtonStyle = styled.button`
       : colors.mainWhite};
   display: inline-flex;
   border-radius: 8px;
-  border: none;
+  border: ${props => (props.variant === "text" ? "none" : "1px solid")};
+  border-color: ${props =>
+    props.isDisabled
+      ? colors.secondaryBlack
+      : props.variant === "primary"
+      ? colors.primaryRed
+      : props.variant === "secondary"
+      ? colors.primaryRed
+      : "transparent"};
   &:hover,
   &:active,
   &:focus {
     background: ${props =>
-      props.variant === "secondary"
-        ? colors.mainWhite
-        : props.isDisabled
+      props.isDisabled
         ? colors.secondaryBlack
+        : props.variant === "secondary"
+        ? colors.mainWhite
         : props.variant === "text"
         ? "unset"
         : colors.primaryRed};
