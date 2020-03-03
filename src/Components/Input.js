@@ -122,7 +122,7 @@ export const Input = forwardRef((props, ref) => {
       {helper && !isError && (
         <small
           css={css`
-            color: ${colors.primaryOrange};
+            color: ${colors.primaryBlack};
             font-size: 60%;
           `}
         >
@@ -132,7 +132,7 @@ export const Input = forwardRef((props, ref) => {
       {isError && (
         <small
           css={css`
-            color: ${isError ? colors.primaryRed : colors.primaryOrange};
+            color: ${isError ? colors.primaryOrange : colors.primaryBlack};
             font-size: 60%;
           `}
         >
