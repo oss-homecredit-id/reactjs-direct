@@ -23,7 +23,7 @@ export const Select = props => {
     const filterData = e.target.value;
     setSelectedValue(filterData);
     const filtered = options.filter(
-      value => value.nameCategory.indexOf(filterData) !== -1
+      data => data[value].indexOf(filterData) !== -1
     );
     setOptions(filtered);
   };
@@ -103,8 +103,8 @@ export const Select = props => {
 };
 
 Select.propTypes = {
-  value: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  label: PropTypes.string,
   options: PropTypes.array.isRequired
 };
 
