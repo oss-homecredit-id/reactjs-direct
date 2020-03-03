@@ -22,8 +22,8 @@ export const Select = props => {
   const filterSelect = e => {
     const filterData = e.target.value;
     setSelectedValue(filterData);
-    const filtered = options.filter(
-      data => data[label].indexOf(filterData) !== -1
+    const filtered = option.filter(
+      data => data.label.indexOf(filterData) !== -1
     );
     setOptions(filtered);
   };
