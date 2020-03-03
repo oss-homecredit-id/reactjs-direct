@@ -23,7 +23,7 @@ export const Select = props => {
     const filterData = e.target.value;
     setSelectedValue(filterData);
     const filtered = options.filter(
-      data => data[value].indexOf(filterData) !== -1
+      data => data[label].indexOf(filterData) !== -1
     );
     setOptions(filtered);
   };
