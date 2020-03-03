@@ -24,7 +24,7 @@ module.exports = (env, argv) => ({
             loader: "url-loader",
             options: {
               mimetype: "image/png",
-              publicPath: "assetes/"
+              publicPath: "assets/"
             }
           }
         ]
