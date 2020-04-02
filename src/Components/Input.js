@@ -25,6 +25,18 @@ export const Input = forwardRef((props, ref) => {
     required
   } = props;
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const iconStyle = {
+    width: "1rem",
+    height: "auto",
+    verticalAlign: "middle"
+  };
+
+  const clickPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div
       css={css`
@@ -36,7 +48,10 @@ export const Input = forwardRef((props, ref) => {
       {/* change conditional style with emotion */}
       <label
         css={css`
-          font-size: 0.75rem;
+          position: absolute;
+          top: -2px;
+          left: 0.5rem;
+          font-size: 0.7rem;
           color: ${isDisabled ? colors.secondaryBlack : ""};
         `}
       >
@@ -46,8 +61,10 @@ export const Input = forwardRef((props, ref) => {
         css={css`
           display: block;
           width: 100%;
-          height: 40px;
-          padding: 2px 8px;
+          height: 45px;
+          padding: ${
+            type === "text" ? ".9rem .5rem 0 0.5rem" : ".9rem 1.8rem 0 .5rem"
+          };
           font-size: 0.8rem;
           border: none;
           outline: none;
@@ -82,7 +99,13 @@ export const Input = forwardRef((props, ref) => {
           }
           
         `}
-        type={type === "select" || type === "date" ? "text" : type}
+        type={
+          type === "select" || type === "date"
+            ? "text"
+            : type === "password" && showPassword
+            ? "text"
+            : type
+        }
         name={name}
         value={value}
         placeholder={placeholder}
@@ -102,21 +125,29 @@ export const Input = forwardRef((props, ref) => {
       {type !== "text" && (
         <span
           css={css`
-            position: absolute;
+            position: relative;
+            float: right;
+            bottom: 1.5rem;
             right: 10px;
-            bottom: 5px;
           `}
         >
-          {type === "password" && <img src={password} alt="hide" />}
-          {type === "date" && (
+          {type === "password" && (
             <img
-              style={{ width: "20px", height: "20px" }}
-              src={datepicker}
+              style={iconStyle}
+              src={password}
+              onClick={clickPassword}
               alt="hide"
             />
           )}
-          {type === "select" && !selectOpen && <img src={down} alt="hide" />}
-          {type === "select" && selectOpen && <img src={up} alt="hide" />}
+          {type === "date" && (
+            <img style={iconStyle} src={datepicker} alt="hide" />
+          )}
+          {type === "select" && !selectOpen && (
+            <img style={iconStyle} src={down} alt="hide" />
+          )}
+          {type === "select" && selectOpen && (
+            <img style={iconStyle} src={up} alt="hide" />
+          )}
         </span>
       )}
       {helper && !isError && (
