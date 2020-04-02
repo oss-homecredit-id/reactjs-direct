@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { css } from "@emotion/core";
 import { colors } from "../assets/mixins/mixins";
