@@ -3,7 +3,13 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Input } from "./Input";
 
-export const Datepicker = ({ dateFormat, selected, onChange, isDisabled }) => {
+export const Datepicker = ({
+  dateFormat,
+  selected,
+  onChange,
+  isDisabled,
+  cy
+}) => {
   const ref = React.createRef();
 
   return (
@@ -18,6 +24,7 @@ export const Datepicker = ({ dateFormat, selected, onChange, isDisabled }) => {
             isDisabled={isDisabled ? true : false}
             type="date"
             ref={ref}
+            cy={cy}
           />
         }
       />

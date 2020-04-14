@@ -5,7 +5,7 @@ import { Input } from "./Input";
 import { css } from "@emotion/core";
 
 export const Select = props => {
-  const { option, value, label, formLabel, selected } = props;
+  const { option, value, label, formLabel, selected, cy } = props;
 
   const [selectedValue, setSelectedValue] = useState("Default Value");
   const [selectOpen, setSelectOpen] = useState(false);
@@ -22,9 +22,13 @@ export const Select = props => {
   const filterSelect = e => {
     const filterData = e.target.value;
     setSelectedValue(filterData);
-    const filtered = option.filter(
-      data => data.label.indexOf(filterData) !== -1
-    );
+    const filtered = option.filter(data => {
+      const getLabel = label.replace(/\s/g, "").split(",");
+      if (getLabel.length > 1) {
+        return data[getLabel[1]].indexOf(filterData) !== -1;
+      }
+      return data.label.indexOf(filterData) !== -1;
+    });
     setOptions(filtered);
   };
 
@@ -59,6 +63,7 @@ export const Select = props => {
         onClick={openSelect}
         onChange={e => filterSelect(e)}
         role="button"
+        cy={cy}
       />
       {selectOpen && (
         <div
@@ -92,6 +97,7 @@ export const Select = props => {
               role="button"
               onKeyDown={() => {}}
               tabIndex={0}
+              data-cy={`select_option_` + cy + `_` + index}
             >
               {labelSelect(dataOption)}
             </div>

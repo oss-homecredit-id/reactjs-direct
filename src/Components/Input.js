@@ -22,7 +22,8 @@ export const Input = forwardRef((props, ref) => {
     isDisabled,
     readOnly,
     maxlength,
-    required
+    required,
+    cy
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -49,11 +50,12 @@ export const Input = forwardRef((props, ref) => {
       <label
         css={css`
           position: absolute;
-          top: -2px;
+          top: 0;
           left: 0.5rem;
           font-size: 0.7rem;
           color: ${isDisabled ? colors.secondaryBlack : ""};
         `}
+        data-cy={`input_label_` + cy}
       >
         {label}
       </label>
@@ -121,6 +123,7 @@ export const Input = forwardRef((props, ref) => {
         ref={ref}
         readOnly={readOnly ? true : false}
         maxLength={maxlength}
+        data-cy={cy}
       />
       {type !== "text" && (
         <span
@@ -137,16 +140,27 @@ export const Input = forwardRef((props, ref) => {
               src={password}
               onClick={clickPassword}
               alt="hide"
+              data-cy="input_password_icon"
             />
           )}
           {type === "date" && (
             <img style={iconStyle} src={datepicker} alt="hide" />
           )}
           {type === "select" && !selectOpen && (
-            <img style={iconStyle} src={down} alt="hide" />
+            <img
+              style={iconStyle}
+              src={down}
+              alt="hide"
+              data-cy="input_select_icon_down"
+            />
           )}
           {type === "select" && selectOpen && (
-            <img style={iconStyle} src={up} alt="hide" />
+            <img
+              style={iconStyle}
+              src={up}
+              alt="hide"
+              data-cy="input_select_icon_up"
+            />
           )}
         </span>
       )}
@@ -156,6 +170,7 @@ export const Input = forwardRef((props, ref) => {
             color: ${colors.primaryBlack};
             font-size: 60%;
           `}
+          data-cy={`input_helper_` + cy}
         >
           {helper}
         </small>
@@ -166,6 +181,7 @@ export const Input = forwardRef((props, ref) => {
             color: ${isError ? colors.primaryOrange : colors.primaryBlack};
             font-size: 60%;
           `}
+          data-cy={`input_error_` + cy}
         >
           {isError}
         </small>

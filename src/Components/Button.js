@@ -5,7 +5,7 @@ import { colors } from "../assets/mixins/mixins";
 
 const ButtonStyle = styled.button`
   background-color: ${props =>
-    props.disabled
+    props.isDisabled
       ? colors.secondaryBlack
       : props.variant === "primary"
       ? colors.primaryRed
@@ -18,7 +18,9 @@ const ButtonStyle = styled.button`
   outline: none;
   margin: 5px;
   color: ${props =>
-    props.variant === "primary"
+    props.isDisabled
+      ? colors.mainWhite
+      : props.variant === "primary"
       ? colors.mainWhite
       : props.variant === "secondary"
       ? colors.primaryRed
@@ -26,11 +28,12 @@ const ButtonStyle = styled.button`
       ? colors.primaryRed
       : colors.mainWhite};
   display: inline-flex;
-  justify-content: center;
   border-radius: 8px;
-  border: ${props => (props.variant === "text" ? "none" : "1px solid")};
+
+  border: ${props =>
+    props.variant === "secondary" ? "1px solid colors.primaryRed" : "none"};
   border-color: ${props =>
-    props.disabled
+    props.isDisabled
       ? colors.secondaryBlack
       : props.variant === "primary"
       ? colors.primaryRed
@@ -41,26 +44,27 @@ const ButtonStyle = styled.button`
   &:active,
   &:focus {
     background: ${props =>
-      props.disabled
+      props.isDisabled
         ? colors.secondaryBlack
         : props.variant === "secondary"
         ? colors.mainWhite
         : props.variant === "text"
         ? "unset"
         : colors.primaryRed};
-    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+    cursor: ${props => (props.isDisabled ? "not-allowed" : "pointer")};
     outline: 0;
   }
 `;
 
-export const Button = ({ variant, disabled, ...props }) => {
+export const Button = ({ variant, isDisabled, cy, ...props }) => {
   return (
     <React.Fragment>
       <ButtonStyle
         variant={variant}
-        disabled={disabled}
+        isDisabled={isDisabled}
         style={props.styleConfig}
         onClick={props.onClick}
+        data-cy={cy}
         {...props}
       />
     </React.Fragment>

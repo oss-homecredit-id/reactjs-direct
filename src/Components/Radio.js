@@ -4,44 +4,41 @@ import PropTypes from "prop-types";
 export const Radio = ({
   options,
   name,
-  label,
-  value,
   radioType,
   selected,
-  setSelected
+  setSelected,
+  cy
 }) => {
   const list = radioType === "list";
   const [option, setOption] = useState([]);
-  const [radioSelected, setRadioSelected] = useState(selected);
 
   const styles = {
     radioContainer: {
       display: "flex",
-      flexDirection: list ? "column" : "row"
+      flexDirection: list ? "column" : "row",
+      margin: "10px"
     },
     option: {
       width: "100%",
-      margin: list ? "10px 5px" : "0 10px",
+      margin: list ? "10px" : "0 10px",
       border: "1px solid #B3B3B3",
-      padding: "5px",
+      padding: "2px",
       display: "flex",
       alignItems: "center",
       backgroundColor: "unset",
       color: "#9f9f9f",
-      fontWeight: "unset",
       cursor: "pointer",
       borderRadius: "3px"
     },
     optionChecked: {
       width: "100%",
-      margin: list ? "10px 0" : "0 10px",
+      margin: list ? "10px" : "0 10px",
       border: "1px solid #E11931",
-      padding: "5px",
+      padding: "2px",
       display: "flex",
       alignItems: "center",
       backgroundColor: "rgba(225,25,49,0.1)",
-      color: "black",
-      fontWeight: "bold",
+      color: "#e11931",
       cursor: "pointer",
       borderRadius: "3px"
     },
@@ -54,21 +51,18 @@ export const Radio = ({
     },
     check: {
       borderRadius: "100%",
-      border: "4px solid #E11931",
       height: "13px",
       width: "13px",
       margin: "5px"
     },
     uncheck: {
       borderRadius: "100%",
-      border: "1px solid black",
-      height: "10px",
-      width: "10px",
+      height: "13px",
+      width: "13px",
       margin: "5px"
     },
     label: {
-      margin: "-2px 5px 0px 5px",
-      fontSize: "0.8rem"
+      margin: "-2px 5px 0px 5px"
     }
   };
 
@@ -82,10 +76,6 @@ export const Radio = ({
     setOption(options);
   }, [options]);
 
-  useEffect(() => {
-    setRadioSelected(selected);
-  }, [selected]);
-
   return (
     <div style={styles.radioContainer}>
       {option
@@ -93,32 +83,61 @@ export const Radio = ({
           ? option.map((option, index) => (
               <label
                 style={
-                  radioSelected === option[value]
-                    ? styles.optionChecked
-                    : styles.option
+                  selected === option ? styles.optionChecked : styles.option
                 }
                 key={index}
               >
                 <div
-                  style={
-                    radioSelected === option[value]
-                      ? styles.check
-                      : styles.uncheck
-                  }
+                  style={selected === option ? styles.check : styles.uncheck}
+                  className={selected === option ? "check" : "uncheck"}
                 ></div>
                 <input
                   style={styles.input}
                   type="radio"
-                  value={option[value]}
-                  checked={radioSelected === option[value]}
+                  value={option}
+                  checked={selected}
                   onChange={event => radioChange(event)}
                   name={name}
+                  data-cy={cy}
                 ></input>
-                <span style={styles.label}>{option[label]}</span>
+                <span style={styles.label}>{option} </span>
               </label>
             ))
           : ""
         : console.log("nada")}
+      <style jsx="true">{`
+        .uncheck::before {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border: 1px solid #7b7b7b;
+          border-radius: 100%;
+          background: #d8d8d8;
+          margin: -1.5px;
+        }
+        .check::before {
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border: 1px solid #e11931;
+          border-radius: 100%;
+          background: #fce8ea;
+          margin: -0.5px;
+        }
+        .check::after {
+          content: "";
+          width: 9px;
+          height: 9px;
+          background: #e11931;
+          position: absolute;
+          border-radius: 100%;
+          -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+          margin: 2.5px;
+        }
+      `}</style>
     </div>
   );
 };
