@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 export const Radio = ({
   options,
   name,
+  label,
+  value,
   radioType,
   selected,
   setSelected,
@@ -11,6 +13,7 @@ export const Radio = ({
 }) => {
   const list = radioType === "list";
   const [option, setOption] = useState([]);
+  const [radioSelected, setRadioSelected] = useState(selected);
 
   const styles = {
     radioContainer: {
@@ -76,6 +79,10 @@ export const Radio = ({
     setOption(options);
   }, [options]);
 
+  useEffect(() => {
+    setRadioSelected(selected);
+  }, [selected]);
+
   return (
     <div style={styles.radioContainer}>
       {option
@@ -83,24 +90,30 @@ export const Radio = ({
           ? option.map((option, index) => (
               <label
                 style={
-                  selected === option ? styles.optionChecked : styles.option
+                  radioSelected === option[value]
+                    ? styles.optionChecked
+                    : styles.option
                 }
                 key={index}
               >
                 <div
-                  style={selected === option ? styles.check : styles.uncheck}
+                  style={
+                    radioSelected === option[value]
+                      ? styles.check
+                      : styles.uncheck
+                  }
                   className={selected === option ? "check" : "uncheck"}
                 ></div>
                 <input
                   style={styles.input}
                   type="radio"
-                  value={option}
-                  checked={selected}
+                  value={option[value]}
+                  checked={radioSelected === option[value]}
                   onChange={event => radioChange(event)}
                   name={name}
                   data-cy={cy}
                 ></input>
-                <span style={styles.label}>{option} </span>
+                <span style={styles.label}>{option[label]}</span>
               </label>
             ))
           : ""
