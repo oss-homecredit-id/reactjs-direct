@@ -102,7 +102,9 @@ export const Radio = ({
                       ? styles.check
                       : styles.uncheck
                   }
-                  className={selected === option ? "check" : "uncheck"}
+                  className={
+                    radioSelected === option[value] ? "check" : "uncheck"
+                  }
                 ></div>
                 <input
                   style={styles.input}
@@ -122,33 +124,33 @@ export const Radio = ({
         .uncheck::before {
           content: "";
           position: absolute;
-          width: 15px;
-          height: 15px;
+          width: 14px;
+          height: 14px;
           border: 1px solid #7b7b7b;
           border-radius: 100%;
-          background: #d8d8d8;
-          margin: -1.5px;
+          background: transparent;
+          margin: -2.5px -2px;
         }
         .check::before {
           content: "";
           position: absolute;
-          width: 15px;
-          height: 15px;
+          width: 14px;
+          height: 14px;
           border: 1px solid #e11931;
           border-radius: 100%;
           background: #fce8ea;
-          margin: -0.5px;
+          margin: -2.5px -2px;
         }
         .check::after {
           content: "";
-          width: 9px;
-          height: 9px;
+          width: 8px;
+          height: 8px;
           background: #e11931;
           position: absolute;
           border-radius: 100%;
           -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
-          margin: 2.5px;
+          margin: 1.5px 2px;
         }
       `}</style>
     </div>

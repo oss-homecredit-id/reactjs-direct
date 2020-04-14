@@ -16,6 +16,13 @@ export const Select = props => {
   }, [props.option]);
 
   const openSelect = () => {
+    if (!selectOpen) {
+      setSelectedValue("");
+    } else {
+      setSelectedValue("Default Value");
+      setOptions(option);
+    }
+    setSelectedValue(!selectOpen ? "" : "Default Value");
     setSelectOpen(!selectOpen);
   };
 
@@ -25,9 +32,9 @@ export const Select = props => {
     const filtered = option.filter(data => {
       const getLabel = label.replace(/\s/g, "").split(",");
       if (getLabel.length > 1) {
-        return data[getLabel[1]].indexOf(filterData) !== -1;
+        return data[getLabel[1]].toLowerCase().indexOf(filterData) !== -1;
       }
-      return data.label.indexOf(filterData) !== -1;
+      return data.label.toLowerCase().indexOf(filterData) !== -1;
     });
     setOptions(filtered);
   };
@@ -36,7 +43,7 @@ export const Select = props => {
     const value = event.target.getAttribute("data-value");
     setSelectedValue(event.target.innerText);
     selected(value);
-    setOptions(options);
+    setOptions(option);
     setSelectOpen(false);
   };
 
@@ -109,13 +116,13 @@ export const Select = props => {
 };
 
 Select.propTypes = {
-  value: PropTypes.string,
-  label: PropTypes.string,
-  options: PropTypes.array.isRequired
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  option: PropTypes.array.isRequired
 };
 
 Select.defaultProps = {
   value: "value",
   label: "label",
-  options: []
+  option: []
 };
