@@ -52,20 +52,16 @@ export const Radio = ({
       width: "auto",
       height: "5%"
     },
-    check: {
+    customRadio: {
       borderRadius: "100%",
       height: "13px",
       width: "13px",
-      margin: "5px"
-    },
-    uncheck: {
-      borderRadius: "100%",
-      height: "13px",
-      width: "13px",
-      margin: "5px"
+      margin: "5px",
+      position: "relative"
     },
     label: {
-      margin: "-2px 5px 0px 5px"
+      margin: "-2px 5px 0px 5px",
+      fontSize: "0.7rem"
     }
   };
 
@@ -97,11 +93,7 @@ export const Radio = ({
                 key={index}
               >
                 <div
-                  style={
-                    radioSelected === option[value]
-                      ? styles.check
-                      : styles.uncheck
-                  }
+                  style={styles.customRadio}
                   className={
                     radioSelected === option[value] ? "check" : "uncheck"
                   }

@@ -50,7 +50,7 @@ export const Input = forwardRef((props, ref) => {
       <label
         css={css`
           position: absolute;
-          top: 0;
+          top: 2px;
           left: 0.5rem;
           font-size: 0.7rem;
           color: ${isDisabled ? colors.secondaryBlack : ""};

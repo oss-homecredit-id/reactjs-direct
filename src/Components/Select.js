@@ -60,7 +60,12 @@ export const Select = props => {
   };
 
   return (
-    <React.Fragment>
+    <div
+      css={css`
+        position: relative;
+        text-align: left;
+      `}
+    >
       <Input
         type="select"
         name={formLabel}
@@ -79,6 +84,13 @@ export const Select = props => {
             padding: 0;
             max-height: 11.5rem;
             overflow: auto;
+            background: ${colors.background};
+            position: absolute;
+            top: 2.5rem;
+            z-index: 2;
+            min-width: 100%;
+            width: 100%;
+            font-size: 0.8rem;
           `}
           onKeyDown={() => {}}
           role="button"
@@ -87,10 +99,12 @@ export const Select = props => {
           {options.map((dataOption, index) => (
             <div
               css={css`
-                padding: 0.8rem 1.8rem;
-                background: ${colors.background}
+                padding: 0.8rem 1rem;
                 border-top: 1px solid ${colors.lighterBlack};
                 border-bottom: 1px solid ${colors.lighterBlack};
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 &:nth-first-of-type {
                   border-top: none;
                 }
@@ -111,7 +125,7 @@ export const Select = props => {
           ))}
         </div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
