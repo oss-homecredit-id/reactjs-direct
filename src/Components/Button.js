@@ -5,7 +5,7 @@ import { colors } from "../assets/mixins/mixins";
 
 const ButtonStyle = styled.button`
   background-color: ${props =>
-    props.isDisabled
+    props.disabled
       ? colors.secondaryBlack
       : props.variant === "primary"
       ? colors.primaryRed
@@ -17,8 +17,9 @@ const ButtonStyle = styled.button`
   padding: 10px 20px;
   outline: none;
   margin: 5px;
+  pointer-events: ${props => (props.disabled ? "none" : "auto")};
   color: ${props =>
-    props.isDisabled
+    props.disabled
       ? colors.mainWhite
       : props.variant === "primary"
       ? colors.mainWhite
@@ -33,7 +34,7 @@ const ButtonStyle = styled.button`
   border: ${props =>
     props.variant === "secondary" ? "1px solid colors.primaryRed" : "none"};
   border-color: ${props =>
-    props.isDisabled
+    props.disabled
       ? colors.secondaryBlack
       : props.variant === "primary"
       ? colors.primaryRed
@@ -44,24 +45,24 @@ const ButtonStyle = styled.button`
   &:active,
   &:focus {
     background: ${props =>
-      props.isDisabled
+      props.disabled
         ? colors.secondaryBlack
         : props.variant === "secondary"
         ? colors.mainWhite
         : props.variant === "text"
         ? "unset"
         : colors.primaryRed};
-    cursor: ${props => (props.isDisabled ? "not-allowed" : "pointer")};
+    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     outline: 0;
   }
 `;
 
-export const Button = ({ variant, isDisabled, cy, ...props }) => {
+export const Button = ({ variant, disabled, cy, ...props }) => {
   return (
     <React.Fragment>
       <ButtonStyle
         variant={variant}
-        isDisabled={isDisabled}
+        disabled={disabled}
         style={props.styleConfig}
         onClick={props.onClick}
         data-cy={cy}

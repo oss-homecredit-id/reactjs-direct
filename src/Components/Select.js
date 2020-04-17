@@ -5,7 +5,17 @@ import { Input } from "./Input";
 import { css } from "@emotion/core";
 
 export const Select = props => {
-  const { option, value, label, formLabel, selected, cy } = props;
+  const {
+    option,
+    value,
+    label,
+    formLabel,
+    disabled,
+    selected,
+    ppCommodity,
+    ppManufacture,
+    cy
+  } = props;
 
   const [selectedValue, setSelectedValue] = useState("Default Value");
   const [selectOpen, setSelectOpen] = useState(false);
@@ -30,6 +40,17 @@ export const Select = props => {
     const filterData = e.target.value;
     setSelectedValue(filterData);
     const filtered = option.filter(data => {
+      if (ppCommodity || ppManufacture) {
+        if (ppCommodity) {
+          return (
+            data.name.localizedString[0].text
+              .toLowerCase()
+              .indexOf(filterData) !== -1
+          );
+        } else if (ppManufacture) {
+          return data.manufacturer[0].toLowerCase().indexOf(filterData) !== -1;
+        }
+      }
       const getLabel = label.replace(/\s/g, "").split(",");
       if (getLabel.length > 1) {
         return data[getLabel[1]].toLowerCase().indexOf(filterData) !== -1;
@@ -74,6 +95,7 @@ export const Select = props => {
         selectOpen={selectOpen}
         onClick={openSelect}
         onChange={e => filterSelect(e)}
+        isDisabled={disabled}
         role="button"
         cy={cy}
       />
@@ -114,13 +136,19 @@ export const Select = props => {
               `}
               onClick={e => handleClick(e)}
               key={index}
-              data-value={dataOption[value]}
+              data-value={
+                ppManufacture ? dataOption.manufacturer[0] : dataOption[value]
+              }
               role="button"
               onKeyDown={() => {}}
               tabIndex={0}
               data-cy={`select_option_` + cy + `_` + index}
             >
-              {labelSelect(dataOption)}
+              {ppCommodity
+                ? dataOption.name.localizedString[0].text || ""
+                : ppManufacture
+                ? dataOption.manufacturer[0] || ""
+                : labelSelect(dataOption)}
             </div>
           ))}
         </div>
