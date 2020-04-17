@@ -61,7 +61,7 @@ export const Radio = ({
     },
     label: {
       margin: "-2px 5px 0px 5px",
-      fontSize: "0.7rem"
+      fontSize: "0.8rem"
     }
   };
 
@@ -131,7 +131,7 @@ export const Radio = ({
           border: 1px solid #e11931;
           border-radius: 100%;
           background: #fce8ea;
-          margin: -2.5px -2px;
+          margin: -2.5px;
         }
         .check::after {
           content: "";
@@ -142,7 +142,7 @@ export const Radio = ({
           border-radius: 100%;
           -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
-          margin: 1.5px 2px;
+          margin: 1.5px;
         }
       `}</style>
     </div>
