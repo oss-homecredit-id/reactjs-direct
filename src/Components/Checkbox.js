@@ -70,7 +70,7 @@ export const Checkbox = ({
               value={options.value}
               checked={checked}
               onChange={e => handleChange(e)}
-              data-cy={cy}
+              data-cy={cy + `_` + index}
               css={css`
                 position: absolute;
                 opacity: 0;

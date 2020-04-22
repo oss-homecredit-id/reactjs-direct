@@ -105,7 +105,7 @@ export const Radio = ({
                   checked={radioSelected === option[value]}
                   onChange={event => radioChange(event)}
                   name={name}
-                  data-cy={cy}
+                  data-cy={cy + `_` + index}
                 ></input>
                 <span style={styles.label}>{option[label]}</span>
               </label>

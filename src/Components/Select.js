@@ -14,16 +14,23 @@ export const Select = props => {
     selected,
     ppCommodity,
     ppManufacture,
+    selectedLabel,
     cy
   } = props;
 
-  const [selectedValue, setSelectedValue] = useState("Default Value");
+  const [selectedValue, setSelectedValue] = useState("");
   const [selectOpen, setSelectOpen] = useState(false);
   const [options, setOptions] = useState(option || []);
 
   useEffect(() => {
     setOptions(option);
   }, [props.option]);
+
+  useEffect(() => {
+    if (selectedLabel) {
+      handleSelectedProps();
+    }
+  }, [props.selectedLabel]);
 
   const openSelect = () => {
     if (!selectOpen) {
@@ -78,6 +85,16 @@ export const Select = props => {
       return newLabel;
     }
     return data[splitLabel];
+  };
+
+  const handleSelectedProps = () => {
+    const getDataSelected = option.find(data => data[value] === selectedLabel);
+    if (!!getDataSelected) {
+      const labelWithProps = labelSelect(getDataSelected);
+      setSelectedValue(labelWithProps);
+    } else {
+      setSelectedValue(selectedLabel);
+    }
   };
 
   return (
