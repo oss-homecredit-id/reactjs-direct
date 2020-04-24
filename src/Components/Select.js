@@ -128,7 +128,7 @@ export const Select = props => {
         onChange={e => filterSelect(e)}
         isDisabled={disabled}
         role="button"
-        tabIndex={tabIndex}
+        tabIndex={tabIndex ? tabIndex : undefined}
         cy={cy}
       />
       {selectOpen && (

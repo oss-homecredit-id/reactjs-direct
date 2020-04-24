@@ -121,13 +121,13 @@ export const Input = forwardRef((props, ref) => {
             ? onClick
             : undefined
         }
-        onKeyDown={e => onKeyDown(e)}
+        onKeyDown={e => (onKeyDown ? onKeyDown(e) : undefined)}
         disabled={isDisabled ? true : false}
         required={required}
         ref={ref}
         readOnly={readOnly ? true : false}
         maxLength={maxlength}
-        tabIndex={tabIndex}
+        tabIndex={tabIndex || 0}
         data-cy={cy}
       />
       {type !== "text" && (
