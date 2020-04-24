@@ -15,6 +15,7 @@ export const Input = forwardRef((props, ref) => {
     name,
     value,
     onChange,
+    onKeyDown,
     onClick,
     isError,
     helper,
@@ -24,6 +25,7 @@ export const Input = forwardRef((props, ref) => {
     readOnly,
     maxlength,
     required,
+    tabIndex,
     cy
   } = props;
 
@@ -119,11 +121,13 @@ export const Input = forwardRef((props, ref) => {
             ? onClick
             : undefined
         }
+        onKeyDown={e => onKeyDown(e)}
         disabled={isDisabled ? true : false}
         required={required}
         ref={ref}
         readOnly={readOnly ? true : false}
         maxLength={maxlength}
+        tabIndex={tabIndex}
         data-cy={cy}
       />
       {type !== "text" && (

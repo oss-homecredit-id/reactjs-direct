@@ -65,6 +65,7 @@ export const Button = ({ variant, disabled, cy, ...props }) => {
         disabled={disabled}
         style={props.styleConfig}
         onClick={props.onClick}
+        tabIndex={props.tabIndex}
         data-cy={cy}
         {...props}
       />

@@ -8,6 +8,7 @@ export const Checkbox = ({
   disabled,
   checked,
   setChecked,
+  tabIndex,
   cy
 }) => {
   const handleChange = e => {
@@ -70,6 +71,7 @@ export const Checkbox = ({
               value={options.value}
               checked={checked}
               onChange={e => handleChange(e)}
+              tabIndex={index === 0 && tabIndex}
               data-cy={cy + `_` + index}
               css={css`
                 position: absolute;

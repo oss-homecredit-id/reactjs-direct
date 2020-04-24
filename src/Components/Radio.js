@@ -9,6 +9,7 @@ export const Radio = ({
   radioType,
   selected,
   setSelected,
+  tabIndex,
   cy
 }) => {
   const list = radioType === "list";
@@ -105,6 +106,7 @@ export const Radio = ({
                   checked={radioSelected === option[value]}
                   onChange={event => radioChange(event)}
                   name={name}
+                  tabIndex={index === 0 && tabIndex}
                   data-cy={cy + `_` + index}
                 ></input>
                 <span style={styles.label}>{option[label]}</span>

@@ -15,6 +15,7 @@ export const Select = props => {
     ppCommodity,
     ppManufacture,
     selectedLabel,
+    tabIndex,
     cy
   } = props;
 
@@ -36,10 +37,10 @@ export const Select = props => {
     if (!selectOpen) {
       setSelectedValue("");
     } else {
-      setSelectedValue("Default Value");
+      setSelectedValue("");
       setOptions(option);
     }
-    setSelectedValue(!selectOpen ? "" : "Default Value");
+    setSelectedValue("");
     setSelectOpen(!selectOpen);
   };
 
@@ -90,11 +91,23 @@ export const Select = props => {
   const handleSelectedProps = () => {
     const getDataSelected = option.find(data => data[value] === selectedLabel);
     if (!!getDataSelected) {
-      const labelWithProps = labelSelect(getDataSelected);
-      setSelectedValue(labelWithProps);
+      if (ppCommodity) {
+        setSelectedValue(getDataSelected.name.localizedString[0].text || "");
+      } else {
+        const labelWithProps = labelSelect(getDataSelected);
+        setSelectedValue(labelWithProps);
+      }
     } else {
       setSelectedValue(selectedLabel);
     }
+  };
+
+  const handleKeyDown = e => {
+    if (e.key === "Enter" && e.keyCode === 13) {
+      openSelect();
+    }
+
+    return false;
   };
 
   return (
@@ -111,9 +124,11 @@ export const Select = props => {
         value={selectedValue}
         selectOpen={selectOpen}
         onClick={openSelect}
+        onKeyDown={e => handleKeyDown(e)}
         onChange={e => filterSelect(e)}
         isDisabled={disabled}
         role="button"
+        tabIndex={tabIndex}
         cy={cy}
       />
       {selectOpen && (
