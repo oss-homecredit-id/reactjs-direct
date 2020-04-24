@@ -17,13 +17,26 @@ module.exports = (env, argv) => ({
         exclude: /(node_modules)/,
         use: ["babel-loader"]
       },
+      // {
+      //   test: /\.(png|jpg|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: "url-loader",
+      //       options: {
+      //         mimetype: "image/png",
+      //         publicPath: "assets/"
+      //       }
+      //     }
+      //   ]
+      // },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
         use: [
           {
             loader: "url-loader",
             options: {
-              mimetype: "image/png",
+              limit: 8192,
+              name: "[name].[ext]",
               publicPath: "assets/"
             }
           }
