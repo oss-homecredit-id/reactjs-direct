@@ -17,6 +17,7 @@ const ButtonStyle = styled.button`
   padding: 10px 20px;
   outline: none;
   margin: 5px;
+  font-size: 1rem;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};
   color: ${props =>
     props.disabled
@@ -55,7 +56,6 @@ const ButtonStyle = styled.button`
         : colors.primaryRed};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     outline: 0;
-    font-size: 1rem;
   }
 `;
 
