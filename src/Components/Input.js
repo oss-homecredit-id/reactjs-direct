@@ -127,7 +127,7 @@ export const Input = forwardRef((props, ref) => {
         ref={ref}
         readOnly={readOnly ? true : false}
         maxLength={maxlength}
-        tabIndex={tabIndex || 0}
+        tabIndex={tabIndex ? tabIndex : undefined}
         data-cy={cy}
       />
       {type !== "text" && (
