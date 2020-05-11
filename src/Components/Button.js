@@ -30,6 +30,7 @@ const ButtonStyle = styled.button`
       : colors.mainWhite};
   display: inline-flex;
   border-radius: 8px;
+  justify-content: center;
 
   border: ${props =>
     props.variant === "secondary" ? "1px solid colors.primaryRed" : "none"};
@@ -54,6 +55,7 @@ const ButtonStyle = styled.button`
         : colors.primaryRed};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
     outline: 0;
+    font-size: 1rem;
   }
 `;
 
