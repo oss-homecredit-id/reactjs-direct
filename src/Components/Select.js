@@ -5,6 +5,7 @@ import { Input } from "./Input";
 import { css } from "@emotion/core";
 
 export const Select = props => {
+  const wrapperRef = useRef(null);
   const {
     option,
     value,
@@ -16,6 +17,7 @@ export const Select = props => {
     ppManufacture,
     selectedLabel,
     tabIndex,
+    placeholder,
     cy
   } = props;
 
@@ -32,6 +34,18 @@ export const Select = props => {
       handleSelectedProps();
     }
   }, [props.selectedLabel]);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setSelectOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
 
   const openSelect = () => {
     if (!selectOpen) {
@@ -116,6 +130,7 @@ export const Select = props => {
         position: relative;
         text-align: left;
       `}
+      ref={wrapperRef}
     >
       <Input
         type="select"
@@ -129,6 +144,7 @@ export const Select = props => {
         isDisabled={disabled}
         role="button"
         tabIndex={tabIndex ? tabIndex : undefined}
+        placeholder={placeholder}
         cy={cy}
       />
       {selectOpen && (
@@ -164,6 +180,11 @@ export const Select = props => {
                 }
                 &:nth-last-of-type {
                   border-bottom: none;
+                }
+                &:hover,
+                &:active,
+                &:focus {
+                  background: ${colors.lighterRed};
                 }
               `}
               onClick={e => handleClick(e)}
