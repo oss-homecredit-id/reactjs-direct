@@ -70,7 +70,7 @@ export const Radio = ({
     setSelected(event.currentTarget.value);
   };
 
-  const optionsValidate = option.length < 4 && option.length > 1;
+  const optionsValidate = option.length < 5 && option.length > 1;
 
   useEffect(() => {
     setOption(options);
