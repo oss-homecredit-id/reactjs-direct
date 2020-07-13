@@ -1,0 +1,41 @@
+{
+  "name": "reactjs-direct",
+  "version": "0.0.0",
+  "description": "React js direct typescript",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oss-homecredit-id/reactjs-direct.git"
+  },
+  "keywords": [
+    "react",
+    "js",
+    "direct"
+  ],
+  "author": "Home Credit Indonesia Development",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oss-homecredit-id/reactjs-direct/issues"
+  },
+  "homepage": "https://github.com/oss-homecredit-id/reactjs-direct#readme",
+  "devDependencies": {
+    "@teamsupercell/typings-for-css-modules-loader": "^2.2.0",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "css-loader": "^3.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^8.0.0",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "files": [
+    "build"
+  ]
+}
