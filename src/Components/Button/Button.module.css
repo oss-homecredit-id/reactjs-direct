@@ -1,0 +1,52 @@
+.ds_button {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin: 0.5rem 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ds_button span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ds_primary_button {
+  background: var(--ds-primaryRed);
+  color: var(--ds-mainWhite);
+}
+
+.ds_secondary_button {
+  border: 1px solid var(--ds-primaryRed);
+  color: var(--ds-primaryRed);
+}
+
+.ds_teritary_button {
+  color: var(--ds-primaryRed);
+  padding: 0.5rem 0;
+}
+
+.ds_button_disabled {
+  color: var(--ds-secondaryBlack);
+  cursor: not-allowed;
+}
+
+.ds_button_disabled span {
+  pointer-events: none;
+}
+
+.ds_primary_button.ds_button_disabled {
+  background: var(--ds-lighterBlack);
+}
+
+.ds_secondary_button.ds_button_disabled {
+  border: 1px solid var(--ds-secondaryBlack);
+}
+
+.ds_full_button {
+  width: 100%;
+}
