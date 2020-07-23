@@ -25,13 +25,21 @@ export const Button: FC<IButton> = props => {
     style,
     children
   } = props;
+
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    // this function need to improve about keyboard event for enter etc
+    if (onClick) {
+      return onClick(e);
+    }
+    return undefined;
+  };
   return (
     <>
       <button
         type={type}
         disabled={disabled}
         style={style}
-        onClick={onClick}
+        onClick={e => handleOnClick(e)}
         tabIndex={tabindex}
         className={`
           ${styles.ds_button}
