@@ -64,9 +64,9 @@
 }
 
 .input_helper_text {
-  color: var(--colors-darkerBlack);
+  color: var(--ds-darkerBlack);
 }
 
 .input_error_text {
-  color: var(--colors-primaryOrange);
+  color: var(--ds-primaryOrange);
 }
