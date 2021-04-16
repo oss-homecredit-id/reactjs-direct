@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap");
+
+html,
+body,
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --ds-mainWhite: #ffffff;
+  --ds-background: #f9f9f9;
+  --ds-darkerBlack: #262626;
+  --ds-primaryBlack: #7b7b7b;
+  --ds-secondaryBlack: #c8c8c8;
+  --ds-lighterBlack: #f4f4f4;
+  --ds-darkerRed: #860e1d;
+  --ds-primaryRed: #e11931;
+  --ds-secondaryRed: #ec7482;
+  --ds-lighterRed: #fce8ea;
+  --ds-darkerGreen: #246634;
+  --ds-primaryGreen: #3eac58;
+  --ds-secondaryGreen: #8acc9a;
+  --ds-lighterGreen: #ecf6ee;
+  --ds-darkerBlue: #235689;
+  --ds-primaryBlue: #3c91e6;
+  --ds-secondaryBlue: #89bcef;
+  --ds-lighterBlue: #ebf4fc;
+  --ds-darkerOrange: #985619;
+  --ds-primaryOrange: #ff912a;
+  --ds-secondaryOrange: #ffbc7e;
+  --ds-lighterOrange: #fff4ea;
+  --ds-darkerYellow: #986e04;
+  --ds-primaryYellow: #ffba08;
+  --ds-secondaryYellow: #ffd569;
+  --ds-lighterYellow: #fff8e6;
+}
+
+::placeholder {
+  color: var(--ds-primaryBlack) !important;
+  opacity: 1;
+}
