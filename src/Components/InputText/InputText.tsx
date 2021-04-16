@@ -5,6 +5,7 @@ import React, {
   FocusEvent,
   CSSProperties
 } from "react";
+import { MasterInput } from "../MasterInput/MasterInput";
 import styles from "./InputText.module.css";
 
 export interface IInputText {
@@ -48,69 +49,27 @@ export const InputText: FC<IInputText> = props => {
     style
   } = props;
   return (
-    <div className={styles.input_frame}>
-      <label
-        className={`
-          ${styles.input_label}
-          ${disabled ? styles.input_label_disabled : ""}
-        `}
-      >
-        {label}
-      </label>
-      <input
+    <>
+      <MasterInput
         type="text"
-        className={`
-          ${styles.input_content}
-          ${
-            disabled
-              ? styles.input_content_disabled
-              : errorText
-              ? styles.input_content_error
-              : ""
-          }
-        `}
-        onChange={
-          !disabled && !readonly && onChange
-            ? (event: ChangeEvent<HTMLInputElement>) => onChange(event)
-            : undefined
-        }
-        onKeyDown={
-          !disabled && !readonly && onKeyDown
-            ? (event: KeyboardEvent<HTMLInputElement>) => onKeyDown(event)
-            : undefined
-        }
-        onKeyUp={
-          !disabled && !readonly && onKeyUp
-            ? (event: KeyboardEvent<HTMLInputElement>) => onKeyUp(event)
-            : undefined
-        }
-        onKeyPress={
-          !disabled && !readonly && onKeyPress
-            ? (event: KeyboardEvent<HTMLInputElement>) => onKeyPress(event)
-            : undefined
-        }
-        onBlur={
-          !disabled && !readonly && onBlur
-            ? (event: FocusEvent<HTMLInputElement>) => onBlur(event)
-            : undefined
-        }
+        label={label}
         id={id}
-        name={id}
-        placeholder={placeholder}
-        maxLength={maxlength}
-        required={required}
-        tabIndex={tabindex}
-        style={style}
         value={value}
-        readOnly={(value && !onChange) || readonly}
+        placeholder={placeholder}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+        onKeyPress={onKeyPress}
+        onBlur={onBlur}
+        errorText={errorText}
+        helperText={helperText}
+        disabled={disabled}
+        readonly={readonly}
+        maxlength={maxlength}
+        required={required}
+        tabindex={tabindex}
+        style={style}
       />
-
-      {helperText && !errorText && (
-        <small className={styles.input_helper_text}>{helperText}</small>
-      )}
-      {errorText && (
-        <small className={styles.input_error_text}>{errorText}</small>
-      )}
-    </div>
+    </>
   );
 };
