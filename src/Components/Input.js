@@ -26,7 +26,8 @@ export const Input = forwardRef((props, ref) => {
     maxlength,
     required,
     tabIndex,
-    cy
+    cy,
+    id
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -129,6 +130,7 @@ export const Input = forwardRef((props, ref) => {
         maxLength={maxlength}
         tabIndex={tabIndex ? tabIndex : undefined}
         data-cy={cy}
+        id={id}
       />
       {type !== "text" && (
         <span

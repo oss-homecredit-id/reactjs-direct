@@ -9,7 +9,8 @@ export const Checkbox = ({
   checked,
   setChecked,
   tabIndex,
-  cy
+  cy,
+  id,
 }) => {
   const handleChange = e => {
     if (options.length > 1) {
@@ -75,6 +76,7 @@ export const Checkbox = ({
                 tabIndex ? (index === 0 ? tabIndex : undefined) : undefined
               }
               data-cy={cy + `_` + index}
+              id={id}
               css={css`
                 position: absolute;
                 opacity: 0;
