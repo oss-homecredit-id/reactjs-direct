@@ -10,7 +10,8 @@ export const Radio = ({
   selected,
   setSelected,
   tabIndex,
-  cy
+  cy,
+  id
 }) => {
   const list = radioType === "list";
   const [option, setOption] = useState([]);
@@ -110,6 +111,7 @@ export const Radio = ({
                     tabIndex ? (index === 0 ? tabIndex : undefined) : undefined
                   }
                   data-cy={cy + `_` + index}
+                  id={id}
                 ></input>
                 <span style={styles.label}>{option[label]}</span>
               </label>

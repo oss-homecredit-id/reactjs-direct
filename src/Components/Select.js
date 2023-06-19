@@ -18,7 +18,8 @@ export const Select = props => {
     selectedLabel,
     tabIndex,
     placeholder,
-    cy
+    cy,
+    id
   } = props;
 
   const [selectedValue, setSelectedValue] = useState("");
@@ -146,6 +147,7 @@ export const Select = props => {
         tabIndex={tabIndex ? tabIndex : undefined}
         placeholder={placeholder}
         cy={cy}
+        id={id}
       />
       {selectOpen && (
         <div
